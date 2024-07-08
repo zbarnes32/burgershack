@@ -34,6 +34,10 @@ class BurgerService {
         const burgers = await dbContext.Burgers.find()
         return burgers 
     }
+    async createBurger(burgerData) {
+        const burger = await dbContext.Burgers.create(burgerData)
+        return burger
+    }
 }
 
 export const burgerService = new BurgerService()
