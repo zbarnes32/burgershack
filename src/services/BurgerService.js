@@ -38,6 +38,17 @@ class BurgerService {
         const burger = await dbContext.Burgers.create(burgerData)
         return burger
     }
+    async deleteBurger(idToRemove) {
+        const burgerToRemove = await dbContext.Burgers.findById(idToRemove)
+        console.log('remove this burger id?', burgerToRemove)
+        if (burgerToRemove == null){
+            throw new Error('Unable to delete')
+        }
+        await burgerToRemove.deleteOne()
+        return `deleted ${burgerToRemove.name}`
+    }
+    
+    
 }
 
 export const burgerService = new BurgerService()
